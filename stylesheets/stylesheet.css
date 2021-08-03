@@ -3,13 +3,14 @@
     margin-top: 30px;
   }
 }
-dd, dt {
-  display: inline-block;
-  vertical-align: middle;
+dl>div {
+  display: flex;
+  height: 3rem;
+  align-items: center;
 }
 dt {
   font-size: 2em !important;
-  width: 1em;
+  width: 1.2em;
 }
 dt > span {
   display: none;
