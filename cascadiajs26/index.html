@@ -219,6 +219,19 @@
       .hero-meta .material-symbols-rounded {
         font-size: 20px;
       }
+      .hero-meta a {
+        color: inherit;
+        text-decoration: none;
+        border-radius: 2px;
+      }
+      .hero-meta a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .hero-meta a:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+      }
 
       /* gradient bar like slide footer */
       .gradient-bar {
@@ -312,6 +325,23 @@
         color: var(--accent-purple);
         flex: 0 0 auto;
       }
+      .btn .btn-icon {
+        flex: 0 0 28px;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-purple);
+      }
+      .btn .btn-icon svg {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: 100%;
+        display: block;
+      }
+      .btn.primary .btn-icon { color: #fff; }
       .btn .btn-text {
         display: flex;
         flex-direction: column;
@@ -419,6 +449,19 @@
         font-size: 18px;
         color: var(--accent-purple);
       }
+      .deck-caption a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .deck-caption a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .deck-caption a:focus-visible {
+        outline: 2px solid var(--accent-purple);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
 
       /* ---------- Footer ---------- */
       footer {
@@ -472,7 +515,12 @@
           >
           <span
             ><span class="material-symbols-rounded" aria-hidden="true">mic</span
-            >CascadiaJS 2026</span
+            ><a
+              href="https://cascadiajs.com/2026"
+              target="_blank"
+              rel="noopener noreferrer"
+              >CascadiaJS 2026</a
+            ></span
           >
         </div>
       </div>
@@ -519,7 +567,10 @@
             <span class="material-symbols-rounded" aria-hidden="true"
               >slideshow</span
             >
-            <span>Talk slides · PDF</span>
+            <a
+              href="cascadiajs-2026-shared-components-beyond-the-design-system.pdf"
+              >Talk slides · PDF</a
+            >
           </div>
         </aside>
       </div>
@@ -552,9 +603,33 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >event</span
-            >
+            <span class="btn-icon cjs-logo" aria-hidden="true">
+              <svg
+                viewBox="0 0 330 368"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-hidden="true"
+                focusable="false"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="32"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <!-- Outer frame -->
+                <rect x="16" y="16" width="298" height="336" rx="4" />
+                <!-- Stacked tree canopy: 3 chevrons, smallest at top, widest at base.
+                     Apexes spaced for clear breathing room between the
+                     32-wide strokes. Slopes tuned so the top peak shares
+                     a similarly obtuse apex angle with the lower two. -->
+                <path d="M120 114 L165 76 L210 114" />
+                <path d="M90 196 L165 128 L240 196" />
+                <path d="M72 264 L165 188 L258 264" />
+                <!-- Vertical trunk: starts inside the lowest V (at its apex)
+                     so it visually connects, runs to the bottom of the frame. -->
+                <path d="M165 220 V352" />
+              </svg>
+            </span>
             <span class="btn-text">
               <span>Talk on CascadiaJS 2026 website</span>
               <span class="btn-sub">Conference page for this session</span>
@@ -570,9 +645,20 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >badge</span
-            >
+            <span class="btn-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm5 170.2h66.5V416H69zm71.7-67.7a38.5 38.5 0 1 1-77 0a38.5 38.5 0 1 1 77 0M317.9 416V312c0-24.8-.5-56.7-34.5-56.7c-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5c67.2 0 79.7 44.3 79.7 101.9V416z"
+                />
+              </svg>
+            </span>
             <span class="btn-text">
               <span>Connect on LinkedIn</span>
               <span class="btn-sub">linkedin.com/in/decompiled</span>
@@ -601,9 +687,20 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >work</span
-            >
+            <span class="btn-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M152.2 236.4c-7.7-8.2-19.7-7.7-24.8 2.8L1.6 490.2c-5 10 2.4 21.7 13.4 21.7h175c5.8.1 11-3.2 13.4-8.4c37.9-77.8 15.1-196.3-51.2-267.1M244.4 8.1c-122.3 193.4-8.5 348.6 65 495.5c2.5 5.1 7.7 8.4 13.4 8.4H497c11.2 0 18.4-11.8 13.4-21.7c0 0-234.5-470.6-240.4-482.3c-5.3-10.6-18.8-10.8-25.6.1"
+                />
+              </svg>
+            </span>
             <span class="btn-text">
               <span>Careers at Atlassian</span>
               <span class="btn-sub">atlassian.com/company/careers</span>
