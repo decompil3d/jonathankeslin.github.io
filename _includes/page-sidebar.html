@@ -1,0 +1,199 @@
+{% if include.type == "home" %}
+<div class="mini-card">
+  <h2>Currently</h2>
+  <p>
+    Building platforms, tinkering with smart home, and hanging out with my
+    family.
+  </p>
+  <ul class="mini-list">
+    <li>
+      <a
+        href="https://github.com/decompil3d"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="material-symbols-rounded" aria-hidden="true">code</span>
+        <span class="mini-list__label">GitHub</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://www.npmjs.com/~decompil3d"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="material-symbols-rounded" aria-hidden="true">package_2</span>
+        <span class="mini-list__label">npm</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://www.linkedin.com/in/decompiled"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="material-symbols-rounded" aria-hidden="true"
+          >business_center</span
+        >
+        <span class="mini-list__label">LinkedIn</span>
+      </a>
+    </li>
+  </ul>
+</div>
+{% elsif include.type == "about" %}
+<div class="profile-card">
+  <h2>Find me</h2>
+  <p>
+    These are the places I keep up to date if you want to connect, follow
+    along, or just browse what I’m doing.
+  </p>
+  <div class="link-grid">
+    <a
+      class="link-card"
+      href="https://github.com/decompil3d"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="link-card__icon"
+        ><span class="material-symbols-rounded" aria-hidden="true">code</span
+      ></span>
+      <span class="link-card__copy">
+        <strong>GitHub</strong>
+        <span>decompil3d</span>
+      </span>
+    </a>
+
+    <a
+      class="link-card"
+      href="https://www.npmjs.com/~decompil3d"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="link-card__icon"
+        ><span class="material-symbols-rounded" aria-hidden="true"
+          >package_2</span
+        ></span>
+      <span class="link-card__copy">
+        <strong>npm</strong>
+        <span>decompil3d</span>
+      </span>
+    </a>
+
+    <a
+      class="link-card"
+      href="https://bsky.app/profile/jonathankeslin.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="link-card__icon"
+        ><span class="material-symbols-rounded" aria-hidden="true"
+          >cloud</span
+        ></span>
+      <span class="link-card__copy">
+        <strong>Bluesky</strong>
+        <span>jonathankeslin.com</span>
+      </span>
+    </a>
+
+    <a
+      class="link-card"
+      href="https://mastodon.social/@decompiled"
+      target="_blank"
+      rel="me noopener noreferrer"
+    >
+      <span class="link-card__icon"
+        ><span class="material-symbols-rounded" aria-hidden="true"
+          >public</span
+        ></span>
+      <span class="link-card__copy">
+        <strong>Mastodon</strong>
+        <span>@decompiled</span>
+      </span>
+    </a>
+
+    <a
+      class="link-card"
+      href="https://www.linkedin.com/in/decompiled"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="link-card__icon"
+        ><span class="material-symbols-rounded" aria-hidden="true"
+          >business_center</span
+        ></span>
+      <span class="link-card__copy">
+        <strong>LinkedIn</strong>
+        <span>decompiled</span>
+      </span>
+    </a>
+
+    <a
+      class="link-card"
+      href="https://www.setlist.fm/concerts/decompiled"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="link-card__icon"
+        ><span class="material-symbols-rounded" aria-hidden="true"
+          >music_note</span
+        ></span>
+      <span class="link-card__copy">
+        <strong>Setlist.fm</strong>
+        <span>decompiled</span>
+      </span>
+    </a>
+  </div>
+</div>
+{% elsif include.type == "talks" %}
+{% elsif include.type == "talk" %}
+<a
+  class="deck-card"
+  href="cascadiajs-2026-shared-components-beyond-the-design-system.pdf"
+  aria-label="Download the slide deck PDF"
+>
+  <picture>
+    <source srcset="cjs1.webp" type="image/webp" />
+    <img
+      src="cjs1.png"
+      alt="Title slide: Shared Components Beyond the Design System — CascadiaJS 2026"
+    />
+  </picture>
+  <span class="play" aria-hidden="true">
+    <span class="material-symbols-rounded">download</span>
+  </span>
+</a>
+<div class="deck-caption">
+  <span class="material-symbols-rounded" aria-hidden="true">slideshow</span>
+  <a href="cascadiajs-2026-shared-components-beyond-the-design-system.pdf">
+    Talk slides · PDF
+  </a>
+</div>
+{% elsif include.type == "video_talk" %}
+<a
+  class="deck-card"
+  href="https://www.youtube.com/watch?v=p9kjdFHpn1g"
+  aria-label="Watch the keynote video on YouTube"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <picture>
+    <img
+      src="https://img.youtube.com/vi/p9kjdFHpn1g/hqdefault.jpg"
+      alt="Thumbnail from the OpenJS World 2021 keynote video"
+    />
+  </picture>
+  <span class="play" aria-hidden="true">
+    <span class="material-symbols-rounded">play_circle</span>
+  </span>
+</a>
+<div class="deck-caption">
+  <span class="material-symbols-rounded" aria-hidden="true">slideshow</span>
+  <a
+    href="https://www.youtube.com/watch?v=p9kjdFHpn1g"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Keynote video · YouTube
+  </a>
+</div>
+{% endif %}

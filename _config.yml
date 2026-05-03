@@ -1,1 +1,11 @@
-theme: jekyll-theme-architect
+title: Jonathan Keslin
+description: Jonathan Keslin is a senior principal engineer, speaker, and web builder based in Seattle.
+url: "https://jonathankeslin.com"
+baseurl: ""
+lang: en
+permalink: pretty
+markdown: kramdown
+collections:
+  talks:
+    output: true
+    permalink: /:path/

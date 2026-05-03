@@ -1,0 +1,13 @@
+primary:
+  - key: home
+    label: Home
+    url: /
+  - key: about
+    label: About me
+    url: /about/
+  - key: talks
+    label: Talks
+    url: /talks/
+  - key: blog
+    label: Blog
+    url: /blog/

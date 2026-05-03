@@ -1,0 +1,69 @@
+---
+layout: default
+---
+
+<section class="hero hero--{{ page.hero_variant | default: 'page' }}">
+  <div class="hero__inner">
+    <div class="hero-top">
+      <div class="eyebrow">{{ page.hero_eyebrow | default: site.title }}</div>
+      {% include site-nav.html active=page.nav_active %}
+    </div>
+
+    <div class="hero-bottom">
+      <h1>{{ page.hero_title_html | default: page.hero_title | default: page.title }}</h1>
+      {% if page.hero_lede %}
+      <p>{{ page.hero_lede }}</p>
+      {% endif %}
+      {% if page.hero_meta %}
+      <div class="hero-meta" aria-label="{{ page.hero_meta_label | default: 'Highlights' }}">
+        {% for item in page.hero_meta %}
+        <span>
+          {% if item.icon %}
+          <span class="material-symbols-rounded" aria-hidden="true">{{ item.icon }}</span>
+          {% endif %}
+          {% if item.date %}
+          {{ item.date | date: "%B %-d, %Y" }}
+          {% elsif item.url %}
+          <a
+            href="{{ item.url }}"
+            {% if item.external %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
+            {{ item.label }}
+          </a>
+          {% else %}
+          {{ item.label }}
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<div class="gradient-bar" aria-hidden="true"></div>
+
+<section
+  class="layout {% if page.sidebar_type == 'talks' or page.sidebar_type == 'blog' %}layout--single{% endif %}"
+  aria-labelledby="{{ page.content_id | default: 'page-content-title' }}"
+>
+  <section class="content-side">
+    {% if page.content_title_html %}
+    <h2 class="section-title" id="{{ page.content_id | default: 'page-content-title' }}">
+      {{ page.content_title_html }}
+    </h2>
+    {% endif %}
+    {% if page.content_lede %}
+    <p class="lede">{{ page.content_lede }}</p>
+    {% endif %}
+    <div class="page-content">
+      {{ content }}
+    </div>
+  </section>
+
+  {% unless page.sidebar_type == "talks" or page.sidebar_type == "blog" %}
+  <aside class="deck-side">
+    {% include page-sidebar.html type=page.sidebar_type %}
+  </aside>
+  {% endunless %}
+</section>
