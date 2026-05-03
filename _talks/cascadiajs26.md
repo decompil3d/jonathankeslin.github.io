@@ -117,17 +117,6 @@ sidebar_type: talk
     >
   </a>
 
-  <a class="btn" href="/talks/">
-    <span class="material-symbols-rounded" aria-hidden="true">slideshow</span>
-    <span class="btn-text">
-      <span>More talks</span>
-      <span class="btn-sub">Conference landing page</span>
-    </span>
-    <span class="material-symbols-rounded arrow" aria-hidden="true"
-      >arrow_forward</span
-    >
-  </a>
-
   <a
     class="btn"
     href="https://www.atlassian.com/company/careers"
