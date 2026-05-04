@@ -28,6 +28,8 @@ sidebar_type: talks
       {{ talk.talk_date | date: "%B %-d, %Y" }}
       {% else %}
       Talk
+      {% endif %} &middot; {% if talk.conference %}
+      {{ talk.conference }}
       {% endif %}
     </p>
     <h2>{{ talk.title }}</h2>

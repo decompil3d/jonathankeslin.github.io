@@ -17,6 +17,7 @@ hero_eyebrow: Jonathan Keslin
 nav_active: talks
 hero_title_html: "Shared Components<br />Beyond the Design System"
 hero_meta_label: Talk details
+conference: CascadiaJS 2026
 talk_date: 2026-06-01
 hero_meta:
   - icon: calendar_today

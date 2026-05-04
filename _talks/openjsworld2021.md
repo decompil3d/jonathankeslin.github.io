@@ -15,6 +15,7 @@ hero_eyebrow: Jonathan Keslin
 nav_active: talks
 hero_title_html: "How Open Governance<br />influences Open Source &amp; Inner Source at GoDaddy"
 hero_meta_label: Talk details
+conference: OpenJS World 2021
 talk_date: 2021-06-02
 hero_meta:
   - icon: calendar_today
