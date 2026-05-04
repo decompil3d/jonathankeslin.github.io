@@ -1,0 +1,157 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'date'
+require 'fileutils'
+require 'optparse'
+require 'yaml'
+
+ROOT = File.expand_path('..', __dir__)
+POSTS_DIR = File.join(ROOT, '_posts')
+TAGS_DIR = File.join(ROOT, 'tags')
+
+def slugify(value)
+  value
+    .to_s
+    .downcase
+    .strip
+    .gsub(/[^a-z0-9]+/, '-')
+    .gsub(/-{2,}/, '-')
+    .gsub(/\A-|-+\z/, '')
+end
+
+def yaml_string(value)
+  "\"#{value.to_s.gsub('\\', '\\\\').gsub('"', '\"')}\""
+end
+
+def load_front_matter(path)
+  text = File.read(path)
+  match = text.match(/\A---\s*\n(.*?)\n---\s*\n/m)
+  return {} unless match
+
+  YAML.safe_load(match[1], permitted_classes: [Date, Time], aliases: true) || {}
+rescue Psych::SyntaxError
+  {}
+end
+
+def collect_tags
+  Dir.glob(File.join(POSTS_DIR, '*.{md,markdown}')).each_with_object([]) do |path, tags|
+    next unless File.file?(path)
+
+    data = load_front_matter(path)
+    Array(data['tags']).each do |tag|
+      tag = tag.to_s.strip
+      next if tag.empty? || tags.include?(tag)
+
+      tags << tag
+    end
+  end.sort_by(&:downcase)
+end
+
+def ensure_tag_page(tag)
+  tag_slug = slugify(tag)
+  tag_dir = File.join(TAGS_DIR, tag_slug)
+  tag_file = File.join(tag_dir, 'index.md')
+
+  return if File.exist?(tag_file)
+
+  FileUtils.mkdir_p(tag_dir)
+  File.write(
+    tag_file,
+    <<~MD
+      ---
+      layout: tag
+      title: #{yaml_string("Tag: #{tag}")}
+      tag: #{yaml_string(tag)}
+      description: #{yaml_string("Posts tagged with #{tag}.")}
+      nav_active: blog
+      ---
+    MD
+  )
+  puts "Created tag page #{tag_file.sub(ROOT + '/', '')}"
+end
+
+options = {
+  date: Date.today,
+  tags: []
+}
+
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($PROGRAM_NAME)} \"Post title\" [options]"
+
+  opts.on('--date DATE', 'Post date in YYYY-MM-DD format (defaults to today)') do |value|
+    options[:date] = Date.iso8601(value)
+  end
+
+  opts.on('--slug SLUG', 'Override the generated file slug') do |value|
+    options[:slug] = value
+  end
+
+  opts.on('--tags TAGS', 'Comma-separated tags for the post') do |value|
+    options[:tags] = value.split(',').map(&:strip).reject(&:empty?)
+  end
+
+  opts.on('--sync-tags', 'Only sync tag pages from existing posts') do
+    options[:sync_tags] = true
+  end
+
+  opts.on('-h', '--help', 'Show help') do
+    puts opts
+    exit 0
+  end
+end
+
+parser.parse!(ARGV)
+
+if options[:sync_tags]
+  FileUtils.mkdir_p(TAGS_DIR)
+  collect_tags.each { |tag| ensure_tag_page(tag) }
+  exit 0
+end
+
+title = ARGV.join(' ').strip
+if title.empty?
+  warn parser.to_s
+  abort 'Please provide a post title.'
+end
+
+slug = options[:slug] || slugify(title)
+date_prefix = options[:date].strftime('%Y-%m-%d')
+post_file = File.join(POSTS_DIR, "#{date_prefix}-#{slug}.md")
+
+if File.exist?(post_file)
+  abort "Refusing to overwrite existing file: #{post_file.sub(ROOT + '/', '')}"
+end
+
+FileUtils.mkdir_p(POSTS_DIR)
+front_matter = []
+front_matter << '---'
+front_matter << 'layout: post'
+front_matter << "title: #{yaml_string(title)}"
+front_matter << "description: #{yaml_string("A draft about #{title}.")}"
+front_matter << 'nav_active: blog'
+front_matter << "hero_eyebrow: #{yaml_string('Jonathan Keslin')}"
+front_matter << "hero_title: #{yaml_string(title)}"
+front_matter << "hero_lede: #{yaml_string('A draft lede goes here.')}"
+if options[:tags].any?
+  front_matter << 'tags:'
+  options[:tags].each do |tag|
+    front_matter << "  - #{yaml_string(tag)}"
+  end
+end
+front_matter << '---'
+
+body = <<~MD
+
+  Write your post here.
+
+  ## A section
+
+  Add your first draft here.
+MD
+
+File.write(post_file, front_matter.join("\n") + body)
+puts "Created post #{post_file.sub(ROOT + '/', '')}"
+
+FileUtils.mkdir_p(TAGS_DIR)
+collect_tags.each { |tag| ensure_tag_page(tag) }

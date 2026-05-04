@@ -21,6 +21,7 @@ content_title_html: 'Latest <strong>posts</strong>'
     {% if post.excerpt %}
     <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
     {% endif %}
+    {% include tag-links.html tags=post.tags class="tag-list--compact" %}
   </article>
   {% endfor %}
 </div>

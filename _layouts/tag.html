@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+{% assign nav_active = page.nav_active | default: 'blog' %}
+{% assign tagged_posts = site.tags[page.tag] | sort: "date" | reverse %}
+
+<section class="hero hero--page">
+  <div class="hero__inner">
+    <div class="hero-top">
+      <div class="eyebrow">{{ page.hero_eyebrow | default: site.title }}</div>
+      {% include site-nav.html active=nav_active %}
+    </div>
+
+    <div class="hero-bottom">
+      <h1>{{ page.title | default: page.tag }}</h1>
+      <p>
+        Posts tagged with <strong>{{ page.tag }}</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="gradient-bar" aria-hidden="true"></div>
+
+<section class="layout layout--single" aria-labelledby="tag-title">
+  <section class="content-side">
+    <h2 class="section-title" id="tag-title">
+      Tagged <strong>{{ page.tag }}</strong>
+    </h2>
+
+    {% if tagged_posts and tagged_posts.size > 0 %}
+    <div class="post-list">
+      {% for post in tagged_posts %}
+      <article class="post-card">
+        <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.excerpt %}
+        <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
+        {% endif %}
+        {% include tag-links.html tags=post.tags class="tag-list--compact" %}
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="info-card">
+      <h2>No posts yet</h2>
+      <p>
+        There aren't any posts with this tag yet.
+      </p>
+    </div>
+    {% endif %}
+  </section>
+</section>

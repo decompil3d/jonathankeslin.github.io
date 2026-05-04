@@ -1,0 +1,53 @@
+---
+layout: default
+---
+
+{% assign nav_active = page.nav_active | default: 'blog' %}
+<section class="hero hero--page">
+  <div class="hero__inner">
+    <div class="hero-top">
+      <div class="eyebrow">{{ page.hero_eyebrow | default: site.title }}</div>
+      {% include site-nav.html active=nav_active %}
+    </div>
+
+    <div class="hero-bottom">
+      <h1>{{ page.title }}</h1>
+      <div class="hero-meta" aria-label="Post details">
+        <span>
+          <span class="material-symbols-rounded" aria-hidden="true"
+            >calendar_today</span
+          >
+          {{ page.date | date: "%B %-d, %Y" }}
+        </span>
+        {% if page.tags and page.tags.size > 0 %}
+        <span>
+          <span class="material-symbols-rounded" aria-hidden="true">sell</span>
+          {% for tag in page.tags %}
+          <a href="{{ '/tags/' | append: tag | slugify | append: '/' | relative_url }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </span>
+        {% endif %}
+      </div>
+      {% if page.hero_lede or page.description %}
+      <p>{{ page.hero_lede | default: page.description }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<div class="gradient-bar" aria-hidden="true"></div>
+
+<section class="layout layout--single post-band" aria-labelledby="post-title">
+  <article class="post-article">
+    <div class="page-content body-copy post-body">
+      {{ content }}
+    </div>
+
+    {% if page.tags and page.tags.size > 0 %}
+    <footer class="post-footer">
+      <h2 class="post-footer__title" id="post-title">Tags</h2>
+      {% include tag-links.html tags=page.tags %}
+    </footer>
+    {% endif %}
+  </article>
+</section>
