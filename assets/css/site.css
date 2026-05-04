@@ -36,6 +36,9 @@ body {
     linear-gradient(180deg, #ffffff 0%, #faf8fd 55%, #f5f2fa 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
@@ -87,6 +90,7 @@ img {
 
 main {
   display: block;
+  flex-grow: 1;
 }
 
 .hero {
@@ -342,7 +346,11 @@ main {
 .btn.primary {
   border-color: transparent;
   color: #fff;
-  background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--accent-purple) 0%,
+    var(--accent-blue) 100%
+  );
 }
 
 .btn.primary:hover {
@@ -622,7 +630,11 @@ main {
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(78, 5, 146, 0.1), rgba(0, 47, 173, 0.08));
+  background: linear-gradient(
+    135deg,
+    rgba(78, 5, 146, 0.1),
+    rgba(0, 47, 173, 0.08)
+  );
   color: var(--accent-purple);
 }
 
