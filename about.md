@@ -25,18 +25,23 @@ sidebar_type: about
       >Atlassian</a
     >
     where I set technical vision and define architecture for global navigation
-    and admin experiences.
+    and admin experiences. Previously, I worked at <a href="https://www.godaddy.com" target="_blank" rel="noopener noreferrer">GoDaddy</a>, running their UX and
+    Product Platform teams; and before that I worked at <a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft</a> on SharePoint
+    and OneDrive.
   </p>
   <p>
     I'm a bit of a geek: I've been writing software of some sort since I was 12
-    and I'm fluent in JavaScript, C#, C++, Java, PHP, (X)HTML, CSS, and Sass.
+    and I'm fluent in several coding languages. I also like to tinker with smart
+    home technology. My house does all kinds of handy things from closing blinds
+    at night when sunrise will be too early, to turning on the lights when we get
+    back home.
   </p>
   <p>
-    I like to write some
+    I also like to write some
     <a href="https://www.npmjs.com/~decompil3d" target="_blank" rel="noopener noreferrer"
-      >open-source software</a
+      >open source software</a
     >
-    every now and then.
+    every now and then. It's a pleasure to give back to the open source community.
   </p>
   <p>
     I earned my bachelor's degree at
