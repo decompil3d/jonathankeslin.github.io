@@ -1,0 +1,22 @@
+{% assign talk = include.talk %}
+<article class="post-card post-card--link">
+  <a
+    class="post-card__overlay"
+    href="{{ talk.url | relative_url }}"
+    aria-label="{{ talk.title }}"
+  ></a>
+  <p class="post-meta">
+    {% if talk.talk_date %}
+    {{ talk.talk_date | date: "%B %-d, %Y" }}
+    {% else %}
+    Talk
+    {% endif %}
+    {% if talk.talk_conference %}
+    &middot; {{ talk.talk_conference }}
+    {% endif %}
+  </p>
+  <h2>{{ talk.title }}</h2>
+  {% if talk.talk_lede %}
+  <p>{{ talk.talk_lede }}</p>
+  {% endif %}
+</article>

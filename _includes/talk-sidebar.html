@@ -1,0 +1,49 @@
+{% assign talk = include.page %}
+{% assign media_type = talk.talk_media_type | default: 'slides' %}
+{% assign media_url = talk.talk_media_url %}
+{% assign media_image = talk.talk_media_image %}
+{% assign media_image_webp = talk.talk_media_image_webp %}
+{% assign media_alt = talk.talk_media_image_alt | default: talk.title %}
+{% assign media_caption = talk.talk_media_caption %}
+
+{% if media_url and media_image %}
+<a
+  class="deck-card"
+  href="{% if media_url contains '://' %}{{ media_url }}{% else %}{{ media_url | relative_url }}{% endif %}"
+  aria-label="{% if media_type == 'video' %}Watch the talk video{% else %}Download the slide deck PDF{% endif %}"
+  {% if media_url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}
+>
+  <picture>
+    {% if media_image_webp %}
+    <source
+      srcset="{% if media_image_webp contains '://' %}{{ media_image_webp }}{% else %}{{ media_image_webp | relative_url }}{% endif %}"
+      type="image/webp"
+    />
+    {% endif %}
+    <img
+      src="{% if media_image contains '://' %}{{ media_image }}{% else %}{{ media_image | relative_url }}{% endif %}"
+      alt="{{ media_alt }}"
+    />
+  </picture>
+  <span class="play" aria-hidden="true">
+    <span class="material-symbols-rounded">
+      {% if media_type == 'video' %}play_circle{% else %}download{% endif %}
+    </span>
+  </span>
+</a>
+<div class="deck-caption">
+  <span class="material-symbols-rounded" aria-hidden="true">slideshow</span>
+  <a
+    href="{% if media_url contains '://' %}{{ media_url }}{% else %}{{ media_url | relative_url }}{% endif %}"
+    {% if media_url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}
+  >
+    {% if media_caption %}
+    {{ media_caption }}
+    {% elsif media_type == 'video' %}
+    Keynote video · YouTube
+    {% else %}
+    Talk slides · PDF
+    {% endif %}
+  </a>
+</div>
+{% endif %}

@@ -1,0 +1,89 @@
+---
+layout: default
+---
+
+{% assign talk = page %}
+{% assign nav_active = talk.nav_active | default: 'talks' %}
+{% assign title_html = talk.talk_title_html | default: talk.title %}
+{% assign talk_content = content | strip %}
+{% assign talk_resources = talk.talk_resources %}
+
+<section class="hero hero--talk">
+  <div class="hero__inner">
+    <div class="hero-top">
+      <div class="eyebrow">{{ talk.hero_eyebrow | default: site.title }}</div>
+      {% include site-nav.html active=nav_active %}
+    </div>
+
+    <div class="hero-bottom">
+      <h1>{{ title_html }}</h1>
+      <div class="hero-meta" aria-label="{{ talk.hero_meta_label | default: 'Talk details' }}">
+        {% if talk.talk_date %}
+        <span>
+          <span class="material-symbols-rounded" aria-hidden="true"
+            >calendar_today</span
+          >
+          {{ talk.talk_date | date: "%B %-d, %Y" }}
+        </span>
+        {% endif %}
+        {% if talk.talk_speakers %}
+        <span>
+          <span class="material-symbols-rounded" aria-hidden="true">people</span>
+          {{ talk.talk_speakers | join: ' · ' }}
+        </span>
+        {% endif %}
+        {% if talk.talk_conference %}
+        <span>
+          <span class="material-symbols-rounded" aria-hidden="true">mic</span>
+          {% if talk.talk_conference_url %}
+          <a
+            href="{{ talk.talk_conference_url }}"
+            {% if talk.talk_conference_url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
+            {{ talk.talk_conference }}
+          </a>
+          {% else %}
+          {{ talk.talk_conference }}
+          {% endif %}
+        </span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gradient-bar" aria-hidden="true"></div>
+
+<section
+  class="layout"
+  aria-labelledby="talk-content-title"
+>
+  <section class="content-side">
+    <h2 class="section-title" id="talk-content-title">
+      About the <strong>talk</strong>
+    </h2>
+    {% if talk.talk_lede %}
+    <p class="lede">{{ talk.talk_lede }}</p>
+    {% endif %}
+    {% if talk_content != '' %}
+    <div class="page-content body-copy talk-body">
+      {{ content }}
+    </div>
+    {% endif %}
+    {% if talk_resources and talk_resources.size > 0 %}
+    <div class="slide-header" aria-hidden="true">
+      <span>{{ talk.title }}</span>
+      <span>Talk Resources</span>
+    </div>
+    <div class="actions">
+      {% for resource in talk_resources %}
+      {% include talk-resource-button.html resource=resource primary=forloop.first %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </section>
+
+  <aside class="deck-side">
+    {% include talk-sidebar.html page=talk %}
+  </aside>
+</section>

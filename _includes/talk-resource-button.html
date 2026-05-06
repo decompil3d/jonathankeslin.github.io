@@ -1,0 +1,39 @@
+{% assign resource = include.resource %}
+{% assign is_primary = include.primary %}
+{% assign resource_url = resource.url %}
+{% assign resource_icon = resource.icon | default: '' %}
+{% assign resource_subtitle = resource.subtitle | default: resource.sub_title %}
+{% assign resource_type = resource.type %}
+
+<a
+  class="btn{% if is_primary %} primary{% endif %}"
+  href="{% if resource.link_type == 'external' %}{{ resource_url }}{% else %}{{ resource_url | relative_url }}{% endif %}"
+  {% if resource.link_type == 'external' %}target="_blank" rel="noopener noreferrer"{% endif %}
+>
+  {% if resource_icon != '' %}
+    {% if resource_icon contains '<svg' %}
+    <span class="btn-icon" aria-hidden="true">{{ resource_icon }}</span>
+    {% else %}
+    <span class="material-symbols-rounded" aria-hidden="true">{{ resource_icon }}</span>
+    {% endif %}
+  {% endif %}
+  <span class="btn-text">
+    <span>{{ resource.title }}</span>
+    {% if resource_type or resource_subtitle %}
+    <span class="btn-sub">
+      {% if resource_type %}
+      {{ resource_type }}
+      {% endif %}
+      {% if resource_type and resource_subtitle %}
+      &middot;
+      {% endif %}
+      {% if resource_subtitle %}
+      {{ resource_subtitle }}
+      {% endif %}
+    </span>
+    {% endif %}
+  </span>
+  <span class="material-symbols-rounded arrow" aria-hidden="true">
+    {% if resource.link_type == 'external' %}open_in_new{% else %}arrow_forward{% endif %}
+  </span>
+</a>

@@ -17,26 +17,7 @@ sidebar_type: talks
 {% if talks.size > 0 %}
 <div class="post-list">
   {% for talk in talks %}
-  <article class="post-card post-card--link">
-    <a
-      class="post-card__overlay"
-      href="{{ talk.url | relative_url }}"
-      aria-label="{{ talk.title }}"
-    ></a>
-    <p class="post-meta">
-      {% if talk.talk_date %}
-      {{ talk.talk_date | date: "%B %-d, %Y" }}
-      {% else %}
-      Talk
-      {% endif %} &middot; {% if talk.conference %}
-      {{ talk.conference }}
-      {% endif %}
-    </p>
-    <h2>{{ talk.title }}</h2>
-    {% if talk.content_lede %}
-    <p>{{ talk.content_lede }}</p>
-    {% endif %}
-  </article>
+  {% include talk-card.html talk=talk %}
   {% endfor %}
 </div>
 {% else %}
