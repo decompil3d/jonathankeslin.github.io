@@ -98,23 +98,60 @@ main {
   overflow: hidden;
   color: #fff;
   background-color: #07040f;
+  --hero-point-x: 50%;
+  --hero-point-y: 42%;
+  --hero-bias-x: 0%;
+  --hero-bias-y: 0%;
+  --hero-shadow-x: 50%;
+  --hero-shadow-y: 42%;
   background-image:
     radial-gradient(
-      ellipse 60% 55% at 75% 30%,
-      rgba(128, 168, 215, 0.55),
-      transparent 65%
+      ellipse 56% 48% at calc(74% - (var(--hero-point-x) * 0.05) - (var(--hero-bias-x) * 0.26))
+        calc(24% + (var(--hero-point-y) * 0.04) + (var(--hero-bias-y) * 0.2)),
+      rgba(125, 180, 255, 0.52),
+      transparent 60%
     ),
     radial-gradient(
-      ellipse 55% 60% at 18% 75%,
-      rgba(78, 5, 146, 0.88),
-      transparent 65%
+      ellipse 60% 56% at calc(18% - (var(--hero-point-x) * 0.1) - (var(--hero-bias-x) * 0.46))
+        calc(76% + (var(--hero-point-y) * 0.03) + (var(--hero-bias-y) * 0.24)),
+      rgba(96, 21, 164, 0.8),
+      transparent 64%
     ),
     radial-gradient(
-      ellipse 70% 60% at 50% 50%,
-      rgba(0, 47, 173, 0.42),
-      transparent 70%
+      ellipse 64% 56% at calc(52% + (var(--hero-point-x) * 0.02) + (var(--hero-bias-x) * 0.18))
+        calc(50% + (var(--hero-point-y) * 0.02) + (var(--hero-bias-y) * 0.16)),
+      rgba(0, 47, 173, 0.38),
+      transparent 72%
     ),
-    linear-gradient(135deg, #0a0118 0%, #1a0533 35%, #002fad 80%, #000 100%);
+    radial-gradient(
+      ellipse 88% 80% at calc(50% + (var(--hero-bias-x) * 0.06))
+        calc(50% + (var(--hero-bias-y) * 0.06)),
+      rgba(15, 6, 34, 0.94),
+      transparent 76%
+    ),
+    radial-gradient(
+      circle at var(--hero-shadow-x) var(--hero-shadow-y),
+      rgba(4, 6, 16, 0.44),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at calc(100% - var(--hero-shadow-x)) calc(100% - var(--hero-shadow-y)),
+      rgba(159, 214, 255, 0.22),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at calc(var(--hero-point-x) + (var(--hero-bias-x) * 0.45))
+        calc(var(--hero-point-y) + (var(--hero-bias-y) * 0.45)),
+      rgba(255, 255, 255, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at calc(100% - var(--hero-point-x) + (var(--hero-bias-x) * -0.55))
+        calc(100% - var(--hero-point-y) + (var(--hero-bias-y) * -0.45)),
+      rgba(78, 5, 146, 0.84),
+      transparent 56%
+    ),
+    linear-gradient(135deg, #090117 0%, #1a0533 34%, #002fad 78%, #000 100%);
   padding: 64px 7vw 56px;
 }
 
