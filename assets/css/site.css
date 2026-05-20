@@ -398,6 +398,50 @@ main {
   box-shadow: 0 20px 40px -22px rgba(0, 47, 173, 0.7);
 }
 
+.btn.is-disabled,
+.btn.is-disabled:hover {
+  pointer-events: none;
+  cursor: default;
+  transform: none;
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.btn.is-disabled:hover {
+  text-decoration: none;
+}
+
+.btn.is-disabled .arrow {
+  color: var(--ink-soft);
+  transform: none;
+}
+
+.btn.is-disabled .material-symbols-rounded,
+.btn.is-disabled .btn-icon {
+  color: var(--ink-soft);
+}
+
+.btn.is-disabled.primary {
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(78, 5, 146, 0.86) 0%,
+    rgba(0, 47, 173, 0.86) 100%
+  );
+  border-color: transparent;
+}
+
+.btn.is-disabled.primary .btn-sub {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.btn.is-disabled.primary .arrow,
+.btn.is-disabled.primary .material-symbols-rounded,
+.btn.is-disabled.primary .btn-icon {
+  color: #fff;
+}
+
 .btn .material-symbols-rounded {
   font-size: 26px;
   color: var(--accent-purple);
@@ -556,6 +600,33 @@ main {
     0 1px 0 rgba(0, 0, 0, 0.04),
     0 40px 70px -30px rgba(78, 5, 146, 0.55),
     0 22px 36px -22px rgba(0, 47, 173, 0.45);
+}
+
+.deck-card--disabled,
+.deck-card--disabled:hover {
+  cursor: default;
+  transform: none;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 30px 60px -30px rgba(78, 5, 146, 0.28),
+    0 18px 32px -22px rgba(0, 47, 173, 0.18);
+}
+
+.deck-card--disabled .play {
+  opacity: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 6, 34, 0.4),
+    rgba(0, 47, 173, 0.18)
+  );
+}
+
+.deck-card--disabled .play .material-symbols-rounded {
+  font-size: 44px;
+}
+
+.deck-caption--disabled {
+  opacity: 0.82;
 }
 
 .deck-card img {

@@ -4,12 +4,20 @@
 {% assign resource_icon = resource.icon | default: '' %}
 {% assign resource_subtitle = resource.subtitle | default: resource.sub_title %}
 {% assign resource_type = resource.type %}
+{% assign is_disabled = resource.disabled %}
 
+{% if is_disabled %}
+<span
+  class="btn{% if is_primary %} primary{% endif %} is-disabled"
+  aria-disabled="true"
+>
+{% else %}
 <a
   class="btn{% if is_primary %} primary{% endif %}"
   href="{% if resource.link_type == 'external' %}{{ resource_url }}{% else %}{{ resource_url | relative_url }}{% endif %}"
   {% if resource.link_type == 'external' %}target="_blank" rel="noopener noreferrer"{% endif %}
 >
+{% endif %}
   {% if resource_icon != '' %}
     {% if resource_icon contains '<svg' %}
     <span class="btn-icon" aria-hidden="true">{{ resource_icon }}</span>
@@ -34,6 +42,10 @@
     {% endif %}
   </span>
   <span class="material-symbols-rounded arrow" aria-hidden="true">
-    {% if resource.link_type == 'external' %}open_in_new{% else %}arrow_forward{% endif %}
+    {% if is_disabled %}schedule{% elsif resource.link_type == 'external' %}open_in_new{% else %}arrow_forward{% endif %}
   </span>
+{% if is_disabled %}
+</span>
+{% else %}
 </a>
+{% endif %}

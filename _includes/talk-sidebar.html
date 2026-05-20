@@ -6,13 +6,21 @@
 {% assign media_alt = talk.talk_media_image_alt | default: talk.title %}
 {% assign media_caption = talk.talk_media_caption %}
 
-{% if media_url and media_image %}
+{% if media_image %}
+{% if media_url %}
 <a
   class="deck-card"
   href="{% if media_url contains '://' %}{{ media_url }}{% else %}{{ media_url | relative_url }}{% endif %}"
   aria-label="{% if media_type == 'video' %}Watch the talk video{% else %}Download the slide deck PDF{% endif %}"
   {% if media_url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}
 >
+{% else %}
+<div
+  class="deck-card deck-card--disabled"
+  aria-label="{% if media_type == 'video' %}Talk video coming soon{% else %}Talk slides coming soon{% endif %}"
+  aria-disabled="true"
+>
+{% endif %}
   <picture>
     {% if media_image_webp %}
     <source
@@ -27,9 +35,14 @@
   </picture>
   <span class="play" aria-hidden="true">
     <span class="material-symbols-rounded">
-      {% if media_type == 'video' %}play_circle{% else %}download{% endif %}
+      {% if media_url %}
+        {% if media_type == 'video' %}play_circle{% else %}download{% endif %}
+      {% else %}
+        schedule
+      {% endif %}
     </span>
   </span>
+{% if media_url %}
 </a>
 <div class="deck-caption">
   <span class="material-symbols-rounded" aria-hidden="true">slideshow</span>
@@ -46,4 +59,17 @@
     {% endif %}
   </a>
 </div>
+{% else %}
+</div>
+<div class="deck-caption deck-caption--disabled" aria-disabled="true">
+  <span class="material-symbols-rounded" aria-hidden="true">slideshow</span>
+  <span>
+    {% if media_caption %}
+    {{ media_caption }}
+    {% else %}
+    Talk slides coming soon
+    {% endif %}
+  </span>
+</div>
+{% endif %}
 {% endif %}
