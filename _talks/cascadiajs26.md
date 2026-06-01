@@ -6,16 +6,17 @@ talk_conference_url: https://cascadiajs.com/2026
 talk_date: 2026-06-01
 talk_lede: "Lots of companies have design system component libraries these days, but those aren't the only shared components around. This talk centers around higher-level shared components for those more complex common UI elements, including how to architect them for reusability, how to ensure they're flexible enough for novel use, and how to govern contributions."
 talk_media_type: slides
-talk_media_caption: Slides coming soon
+talk_media_url: /cascadiajs26/cascadiajs-2026-shared-components-beyond-the-design-system.pdf
 talk_media_image: /cascadiajs26/cjs1.png
 talk_media_image_webp: /cascadiajs26/cjs1.webp
 talk_media_image_alt: "Title slide: Shared Components Beyond the Design System — CascadiaJS 2026"
 talk_resources:
-  - title: Slides coming soon
+  - title: Download the slides
     icon: download
+    link_type: internal
+    url: /cascadiajs26/cascadiajs-2026-shared-components-beyond-the-design-system.pdf
     type: PDF
     subtitle: Shared Components Beyond the Design System
-    disabled: true
     primary: true
   - title: Talk on CascadiaJS 2026 website
     icon: |
@@ -44,8 +45,9 @@ talk_resources:
     icon: business_center
     link_type: external
     url: https://www.linkedin.com/in/decompiled/
-    subtitle: linkedin.com/in/decompiled
+    subtitle: Let's keep in touch
   - title: Careers at Atlassian
+    subtitle: Come work with me
     icon: |
       <svg
         viewBox="0 0 512 512"
